@@ -17,8 +17,8 @@ from keep_alive import keep_alive
 
 keep_alive()
 
-from dotenv import load_dotenv
-load_dotenv(dotenv_path="../.env")
+#from dotenv import load_dotenv
+#load_dotenv(dotenv_path="../.env")
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
 # --- Caching setup ---
@@ -136,7 +136,7 @@ def download_song(query):
         'default_search': 'ytsearch',
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
-            'ffmpeg_location': './ffmpeg',
+            #'ffmpeg_location': './ffmpeg',
             'preferredcodec': 'opus',
             'preferredquality': '0',
         }]
@@ -293,7 +293,7 @@ async def play_next(guild_id):
         source = await discord.FFmpegOpusAudio.from_probe(
             url,
             method='fallback',
-            executable='./ffmpeg',
+            #executable='./ffmpeg',
             before_options='-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
             options='-b:a 256k'
         )
