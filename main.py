@@ -37,7 +37,7 @@ intents.guilds = True
 intents.members = True
 intents.voice_states = True
 
-bot = commands.Bot(command_prefix="!", intents=intents)
+bot = commands.Bot(command_prefix="/", intents=intents)
 
 # --- Alt messages ---
 RESPONSES = {
@@ -136,7 +136,7 @@ def download_song(query):
         'default_search': 'ytsearch',
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
-            #'ffmpeg_location': './ffmpeg',
+            'ffmpeg_location': './ffmpeg.bin',
             'preferredcodec': 'opus',
             'preferredquality': '0',
         }]
@@ -293,7 +293,7 @@ async def play_next(guild_id):
         source = await discord.FFmpegOpusAudio.from_probe(
             url,
             method='fallback',
-            #executable='./ffmpeg',
+            executable='./ffmpeg.bin',
             before_options='-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
             options='-b:a 256k'
         )
